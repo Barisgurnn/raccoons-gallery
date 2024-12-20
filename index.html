@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Story Raccoons NFT Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: "Neue Haas Grotesk Display Pro";
+            src: url("./assets/fonts/NeueHaasDisplayPro.woff2") format("woff2");
+            font-display: swap;
+        }
+    </style>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="loading">
+        <div class="loading-indicator"></div>
+    </div>
+
+    <div class="background-container">
+        <div class="silhouettes"></div>
+    </div>
+
+    <div class="gallery-container">
+        <div class="circular-gallery">
+            <!-- NFT items will be added dynamically -->
+        </div>
+    </div>
+
+    <div class="spotlights">
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
+    </div>
+
+    <nav class="main-nav">
+        <div class="logo-container">
+            <a href="#" class="street-art">RACCOONS GALLERY</a>
+            <div class="logo-paint"></div>
+        </div>
+    </nav>
+
+    <div class="gallery-overlay">
+        <div class="overlay-content"></div>
+    </div>
+
+    <div class="gallery"></div>
+    <div class="overlay">
+        <div class="overlay-content">
+            <img src="" alt="">
+        </div>
+    </div>
+
+    <!-- Müzik Kontrolü -->
+    <div class="music-controls">
+        <audio id="bgMusic" loop>
+            <source src="assets/music/background.mp3" type="audio/mp3">
+        </audio>
+        <button id="musicToggle" class="music-toggle">🔊</button>
+    </div>
+
+    <style>
+        .music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        .music-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+
+    <script>
+        // NFT collection data
+        const nftCollection = [
+            { id: 1, image: 'assets/images/1.png' },
+            { id: 2, image: 'assets/images/2.png' },
+            { id: 3, image: 'assets/images/3.png' },
+            { id: 4, image: 'assets/images/4.png' },
+            { id: 5, image: 'assets/images/5.png' },
+            { id: 6, image: 'assets/images/6.png' },
+            { id: 7, image: 'assets/images/7.png' },
+            { id: 8, image: 'assets/images/8.png' },
+            { id: 9, image: 'assets/images/9.png' },
+            { id: 10, image: 'assets/images/10.png' },
+            { id: 11, image: 'assets/images/11.png' },
+            { id: 12, image: 'assets/images/12.png' },
+            { id: 13, image: 'assets/images/13.png' },
+            { id: 14, image: 'assets/images/14.png' },
+            { id: 15, image: 'assets/images/15.png' },
+            { id: 16, image: 'assets/images/16.png' },
+            { id: 17, image: 'assets/images/17.png' },
+            { id: 18, image: 'assets/images/18.png' },
+            { id: 19, image: 'assets/images/19.png' },
+            { id: 20, image: 'assets/images/20.png' },
+            { id: 21, image: 'assets/images/21.png' }
+        ];
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
