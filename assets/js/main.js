@@ -320,22 +320,14 @@ class CircularGallery {
     }
 
     closeOverlay() {
-        const container = this.overlayContent.querySelector('.img-container');
-        if (container) {
-            container.style.opacity = '0';
-            container.style.transform = 'scale(0.8)';
-        }
+        this.overlay.classList.remove('active');
+        document.body.style.overflow = '';
         
         setTimeout(() => {
-            this.overlay.classList.remove('active');
-            document.body.style.overflow = '';
-            
-            setTimeout(() => {
-                if (!this.overlay.classList.contains('active')) {
-                    this.overlayContent.innerHTML = '';
-                }
-            }, 300);
-        }, 200);
+            if (!this.overlay.classList.contains('active')) {
+                this.overlayContent.innerHTML = '';
+            }
+        }, 300);
     }
 }
 
