@@ -37,6 +37,7 @@ class CircularGallery {
         this.update();
         this.animate();
         this.setupResizeHandler();
+        this.setupMusicControls();
         this.gallery.classList.add('loaded');
     }
 
@@ -48,7 +49,7 @@ class CircularGallery {
         let lastTouchTime = 0;
 
         // Mobil için touch events
-        if (this.isMobile) {
+        if ('ontouchstart' in window) {
             this.gallery.addEventListener('touchstart', (e) => {
                 this.touchStartX = e.touches[0].clientX;
                 this.touchStartY = e.touches[0].clientY;
@@ -95,7 +96,7 @@ class CircularGallery {
         // Desktop için mouse events
         else {
             window.addEventListener('mousedown', (e) => {
-                if (e.button === 0 || e.button === 1) {
+                if (e.button === 0) { // Sadece sol tıklama
                     e.preventDefault();
                     this.isDragging = true;
                     this.isAutoRotating = false;
@@ -113,7 +114,7 @@ class CircularGallery {
             });
 
             window.addEventListener('mouseup', (e) => {
-                if (this.isDragging && (e.button === 0 || e.button === 1)) {
+                if (e.button === 0) { // Sadece sol tıklama
                     this.isDragging = false;
                     this.lastMouseX = null;
                     this.isAutoRotating = true;
@@ -164,31 +165,6 @@ class CircularGallery {
                 }, 500);
             }
         });
-    }
-
-    setupMusicControls() {
-        // Müzik başlangıçta kapalı
-        this.bgMusic.volume = 0.3; // Ses seviyesi
-        
-        this.musicToggle.addEventListener('click', () => {
-            if (this.bgMusic.paused) {
-                this.bgMusic.play();
-                this.musicToggle.textContent = '';
-            } else {
-                this.bgMusic.pause();
-                this.musicToggle.textContent = '';
-            }
-        });
-
-        // Kullanıcı etkileşimi ile müziği başlat
-        document.addEventListener('click', () => {
-            if (!this.bgMusic.played.length) {
-                this.bgMusic.play().catch(() => {
-                    // Otomatik oynatma engellendiyse sessiz simgesini göster
-                    this.musicToggle.textContent = '';
-                });
-            }
-        }, { once: true });
     }
 
     createGalleryItems() {
@@ -329,17 +305,38 @@ class CircularGallery {
             }
         }, 300);
     }
+
+    setupMusicControls() {
+        // Müzik başlangıçta kapalı
+        this.bgMusic.volume = 0.3; // Ses seviyesi
+        
+        this.musicToggle.addEventListener('click', () => {
+            if (this.bgMusic.paused) {
+                this.bgMusic.play();
+                this.musicToggle.textContent = '';
+            } else {
+                this.bgMusic.pause();
+                this.musicToggle.textContent = '';
+            }
+        });
+
+        // Kullanıcı etkileşimi ile müziği başlat
+        document.addEventListener('click', () => {
+            if (!this.bgMusic.played.length) {
+                this.bgMusic.play().catch(() => {
+                    // Otomatik oynatma engellendiyse sessiz simgesini göster
+                    this.musicToggle.textContent = '';
+                });
+            }
+        }, { once: true });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const gallery = new CircularGallery();
 
     window.addEventListener('load', () => {
-        const loading = document.querySelector('.loading');
-        loading.classList.add('hidden');
-
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 100);
+        document.body.classList.add('loaded');
+        document.querySelector('.loading').style.display = 'none';
     });
 });
