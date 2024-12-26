@@ -1,6 +1,37 @@
+// Kar yağışı efekti
+function createSnowflakes() {
+    const snowflakeCount = 30; 
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '100%';
+    container.style.pointerEvents = 'none';
+    container.style.zIndex = '9999';
+    document.body.appendChild(container);
+
+    for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.innerHTML = '❄';
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+        snowflake.style.opacity = Math.random() * 0.7 + 0.3;
+        snowflake.style.fontSize = Math.random() * 15 + 10 + 'px';
+        container.appendChild(snowflake);
+
+        setTimeout(() => {
+            snowflake.remove();
+        }, 5000);
+    }
+}
+
+// Kar yağışını başlat
+setInterval(createSnowflakes, 300);
+
 class CircularGallery {
     constructor() {
-        this.title = 'RACCOONS GALLERY';
         this.gallery = document.querySelector('.circular-gallery');
         this.items = [];
         this.currentAngle = 0;
@@ -19,11 +50,10 @@ class CircularGallery {
         this.touchStartY = 0;
 
         // Müzik kontrolü
-        this.bgMusic = document.getElementById('bgMusic');
-        if (this.bgMusic) {
-            this.bgMusic.volume = 0.3;
-            this.bgMusic.play();
-        }
+        this.bgMusic = new Audio('assets/music/1.mp3');
+        this.bgMusic.volume = 0.3;
+        this.bgMusic.loop = true;
+        this.bgMusic.play();
 
         this.musicToggle = document.getElementById('musicToggle');
         this.setupMusicControls();
